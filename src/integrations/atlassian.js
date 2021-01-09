@@ -74,17 +74,17 @@ clockifyButton.render(
 
 // One issue fullscreen
 clockifyButton.render(
-    'div[id="jira-frontend"] > div > div > div > div:last-child:not(.clockify)',
+    'div[id="jira-frontend"] > div > div > div > div:nth-last-child(2):not(.clockify)',
     { observe: true },
     (elem) => {
 
         const page = elem.closest('div[id="page"]');
         const container =
             $('div > div > div > div > div > div > div[id="jira-issue-header"] ' +
-                '> div > div > div > div > div > div:first-child > div > div', elem);
+                '> div > div > div > div', elem);
         const issueNumber = window.location.href.match(/browse\/(.*?)(&|$)/)[1];
         const descElement = $('div[id="jira-issue-header"]', elem).parentNode;
-        const desc = $('h1', descElement).textContent;
+        const desc = $('.sc-dQnMOy', descElement).textContent;
 
         // Try to find the project
         let project = $('div[role="presentation"] > button', page);
