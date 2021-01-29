@@ -1,5 +1,3 @@
-console.log('run2')
-
 var myObserver
 var cachedSelectedIssue
 var oneIssuePage
