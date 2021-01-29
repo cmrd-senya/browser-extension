@@ -2,6 +2,17 @@ console.log('run2')
 
 var myObserver
 var cachedSelectedIssue
+var oneIssuePage
+
+oneIssuePage = null
+
+getRecordTitle = (issueID) => {
+  if (oneIssuePage) {
+    return document.title.replace(/ - Jira/i, "")
+  }
+
+  return `[${issueID}]`
+}
 
 renderToNode = (node) => {
     const selectedIssue = node.textContent
@@ -22,7 +33,7 @@ renderToNode = (node) => {
 
     const container = parents[0]
     let link = clockifyButton.createButton({
-        description: document.title.replace(" - Jira", ""),
+        description: getRecordTitle(selectedIssue),
         projectName: 'project',
         taskName: selectedIssue
     })
@@ -40,6 +51,7 @@ getSelectedIssue = () => {
     const match = window.location.pathname.match(/^\/browse\/([A-Z0-9\-]+)$/)
     if (match && match[1]) {
       selectedIssue = match[1]
+      oneIssuePage = true
     }
   }
 
