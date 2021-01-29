@@ -110,6 +110,12 @@
     "script": "flow.js",
     "clone": false
   },
+  "gitea.io": {
+    "name": "Gitea",
+    "link": "*://try.gitea.io/*",
+    "script": "gitea.js",
+    "clone": false
+  },
   "github.com": {
     "name": "Github",
     "link": "*://github.com/*",
@@ -467,5 +473,11 @@
     "name": "Freshrelease",
     "link": "*://*.freshrelease.com/*",
     "script": "freshrelease.js"
+  },
+  "groupnwork.com": {
+    "name": "Group&Work",
+    "link": "*://*.groupnwork.com/*",
+    "script": "groupnwork.js",
+    "clone": false
   }
 }
