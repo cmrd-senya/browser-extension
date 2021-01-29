@@ -36,6 +36,13 @@ getSelectedIssue = () => {
   let searchParams = new URLSearchParams(window.location.search)
   let selectedIssue = searchParams.get('selectedIssue')
 
+  if (!selectedIssue) {
+    const match = window.location.pathname.match(/^\/browse\/([A-Z0-9\-]+)$/)
+    if (match && match[1]) {
+      selectedIssue = match[1]
+    }
+  }
+
   if (cachedSelectedIssue && (cachedSelectedIssue !== selectedIssue)) {
     if (document.querySelector('.clockify')) {
       document.querySelectorAll('.clockify').forEach((el) => {
@@ -81,14 +88,9 @@ if (!myObserver) {
     const mapedNodes = mutations.filter(
       ({ type, addedNodes }) => (type === 'childList' && addedNodes.length > 0)
     ).map(
-      // function ({addedNodes, target}) {
       ({ target}) => (
         findNodeWithText(selectedIssue, target)
       )
-      // console.log(target)
-      // const res = Array.from(addedNodes).map((node) => (
-      //   document.evaluate( `.//*[text()='${selectedIssue}']`, node, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue
-      // )).filter(Boolean)
     ).filter(Boolean)
 
     if (!mapedNodes.length) {
