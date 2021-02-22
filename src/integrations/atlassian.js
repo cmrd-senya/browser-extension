@@ -14,9 +14,10 @@ getRecordTitle = (issueID) => {
 
 renderToNode = (node) => {
     const selectedIssue = node.textContent
-    if (node.parentNode.classList.contains('clockify')) { return }
+    if (node.parentNode.dataset.clockify) { return }
 
-    node.parentNode.classList.add('clockify')
+    node.parentNode.dataset.clockify = true
+
     let tags = []
     let parents = []
     for (let issueTag = node.parentNode; Boolean(issueTag); issueTag = issueTag.parentNode) {
@@ -54,11 +55,11 @@ getSelectedIssue = () => {
   }
 
   if (cachedSelectedIssue && (cachedSelectedIssue !== selectedIssue)) {
-    if (document.querySelector('.clockify')) {
-      document.querySelectorAll('.clockify').forEach((el) => {
+    if (document.querySelector("[data-clockify='true']")) {
+      document.querySelectorAll("[data-clockify='true']").forEach((el) => {
         const button = el.querySelector('#clockifyButton')
         if (button) { button.remove() }
-        el.classList.remove('clockify')
+        delete el.dataset.clockify
       })
     }
   }
