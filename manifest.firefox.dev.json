@@ -1,7 +1,7 @@
 {
   "manifest_version" : 2,
-  "name": "Clockify Time Tracker",
-  "short_name": "Clockify",
+  "name": "Clockify Time Tracker (RW custom)",
+  "short_name": "Clockify (RW custom)",
   "description": "Track time from anywhere on the web and improve productivity.",
   "background": {
     "scripts": [
