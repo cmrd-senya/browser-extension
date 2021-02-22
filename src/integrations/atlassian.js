@@ -4,12 +4,23 @@ var oneIssuePage
 
 oneIssuePage = null
 
+requestRemoteTitle = (issueID) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', `/rest/api/2/issue/${issueID}`, false)
+  xhr.send()
+
+  const json = JSON.parse(xhr.responseText)
+  return json.fields.summary
+}
+
 getRecordTitle = (issueID) => {
   if (oneIssuePage) {
     return document.title.replace(/ - Jira/i, "")
   }
 
-  return `[${issueID}]`
+  const title = requestRemoteTitle(issueID)
+
+  return `[${issueID}] ${title}`
 }
 
 renderToNode = (node) => {
